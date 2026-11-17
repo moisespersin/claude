@@ -96,3 +96,29 @@ sessão "[Vídeo] Narrado".
   no `initial_prompt` sem `condition_on_previous_text=False` — o modelo repete a frase.
 - Vídeos grandes: espaço em disco na nuvem é limitado; apagar arquivos intermediários
   ao longo do processo.
+
+## Formato curto (até 30 s) — novo estilo de legenda
+
+Pedido em 17/11/2026. Usa o estilo salvo em `editor-de-videos-preferencias.md` (sessão "[Vídeo] Narrado"),
+adaptado para consulta.
+
+- **Duração:** até 30 s por vídeo, 1 tema por vídeo, começando pela fala mais forte.
+- **Gancho (título):** NÃO é a primeira frase falada; é uma **pergunta sobre a dor da paciente**,
+  pensando em identificação coletiva (ex.: "Já gastou com produto que prometia resolver tudo?").
+  - Manrope Bold ~56 px, branco, 2 linhas centralizadas no topo (y≈200).
+  - **Painel grafite translúcido** (#1F2228, ~78%) atrás do título: a parede do consultório é clara
+    e o branco puro some.
+  - Fica na tela durante a primeira frase falada (mín. ~2,8 s, máx. ~5,5 s) e sai em **corte seco**.
+  - A legenda só começa depois que o gancho sai.
+- **Legenda:** Manrope Regular ~40 px, branco puro (sem destaque de palavra), 2–4 palavras / ≤24
+  caracteres, caixa preta ~43% com cantos arredondados, centralizada em y≈1200 (abaixo do rosto
+  do dentista, sobre a mesa). Sem a troca de altura paciente/dentista do formato longo.
+- **Cortes:** rente à fala; pausas internas ≥0,35 s caem para ~0,2 s; repetições cortadas.
+  - Bordas e pausas definidas por **re-transcrição local** (janela de ±1,2 s com áudio normalizado):
+    os tempos da transcrição completa erram até 0,4 s e engolem a última palavra.
+  - Depois de cortar, transcrever o resultado e conferir (log por trecho). Onde o automático errar,
+    definir o trecho à mão.
+- **Áudio:** subir ~14 dB ANTES do redutor de ruído (arnndn): com o áudio baixo da consulta, o
+  modelo confunde voz com ruído. Ajuste final de volume nos arquivos prontos até −14 LUFS.
+- **Privacidade:** zoom fechado (700×1244) em todos os trechos em que a paciente se inclina; zoom
+  normal só onde foi conferido quadro a quadro que ela aparece apenas da perna para baixo.
