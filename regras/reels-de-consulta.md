@@ -26,6 +26,10 @@ sessão "[Vídeo] Narrado".
 - Mostrar **um detalhe neutro do paciente** (mãos, ombro, nuca, de costas), só para
   mostrar que há alguém ali, sem permitir identificação.
 - Se não houver nenhum trecho do paciente que possa aparecer, avisar. Não inventar imagem.
+- Câmera fixa com paciente à esquerda: usar **zoom** (não desfoque).
+  - Falas do dentista: recorte 810×1440 (x=270, y=300) → mostra braço/mãos/pernas do paciente.
+  - Falas do paciente, quando ela se inclina e o perfil aparece: recorte mais fechado
+    700×1244 (x=380, y=330). Conferir quadro a quadro antes de exportar.
 
 ## 3. Seleção dos momentos
 
@@ -52,6 +56,9 @@ sessão "[Vídeo] Narrado".
 - Ponto de partida (ffmpeg), ajustar de ouvido por gravação:
   `highpass=f=80,lowpass=f=12000,afftdn=nf=-25,acompressor=threshold=-20dB:ratio=3,loudnorm=I=-14:TP=-1.5:LRA=7`
 - Fade-out curto no final (~0,3 s).
+- Redução de ruído com o modelo RNN de voz `sh.rnnn` (arnndn) + afftdn.
+- O loudnorm de passada única fica abaixo do alvo: fazer **segunda passada** (medição + ganho
+  com limitador) até ~−14 LUFS.
 
 ## 6. Legendas dinâmicas
 
@@ -74,7 +81,7 @@ sessão "[Vídeo] Narrado".
 
 ## 7. Exportação e entrega
 
-- 1080×1920, **60 fps**, H.264 (`-preset slow -crf 18 -profile:v high`), áudio AAC 192k,
+- 1080×1920, **mesma taxa de quadros do original** (gravação de consulta veio em 30 fps; não inventar 60), H.264 (`-preset slow -crf 18 -profile:v high`), áudio AAC 192k,
   `-movflags +faststart`, sem metadados (`-map_metadata -1`).
 - Vídeo do iPhone pode vir em HDR (HLG/BT.2020): exportar em HDR é ~4× mais lento.
 - Para **cada tópico**, entregar **duas versões**: **com legenda** e **sem legenda**.
@@ -82,7 +89,10 @@ sessão "[Vídeo] Narrado".
 
 ## Recebimento do vídeo
 
-- Por **WeTransfer** (já liberado no ambiente) ou **Dropbox** (pode exigir liberar o
-  host de download na primeira vez).
+- Por **WeTransfer** (já liberado no ambiente) ou **Dropbox**. O Dropbox usa um endereço de
+  download diferente a cada link (`<código>.dl.dropboxusercontent.com`), então cada vídeo novo
+  pede uma aprovação de rede.
+- Transcrição: Whisper `large-v3-turbo` (melhor que o `medium`). Não usar frase-guia longa
+  no `initial_prompt` sem `condition_on_previous_text=False` — o modelo repete a frase.
 - Vídeos grandes: espaço em disco na nuvem é limitado; apagar arquivos intermediários
   ao longo do processo.
