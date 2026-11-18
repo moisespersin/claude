@@ -1,68 +1,111 @@
 # Padrão visual — Antes e Depois (Moisés Persin)
 
-Guia para criar posts de antes e depois no padrão da marca. Referências em `referencias/`.
+Guia para criar posts de antes e depois no padrão da marca. Referências em `referencias/`
+(numeradas de 01 a 10, citadas abaixo como "ref. N").
 
 > Status: em construção. Mais referências virão para consolidar o padrão.
 > Paleta de cores oficial: **pendente de anexar neste repositório** (ver seção Cores).
 
-## Formato
+## Formatos
 
-- **Tamanho:** 1080 × 1350 px (retrato 4:5, feed do Instagram).
-- **Layout principal:** duas fotos **empilhadas na vertical**, cada uma com metade da altura
-  (cerca de 1080 × 675). Antes em cima, depois embaixo.
-- **Layout alternativo:** duas fotos **lado a lado** (cerca de 540 × 1350 cada), com o título
-  ocupando o topo, sobre o fundo (ref. 05).
-- A divisão entre as fotos é um corte seco, sem moldura nem borda.
-- **Mesmo ângulo, enquadramento e iluminação** no antes e no depois: perfil, ¾ ou perfil com o
-  rosto inclinado para cima (para mostrar mento, mandíbula e nariz).
-- O rosto ocupa a maior parte do quadro, com recorte próximo (do topo da cabeça ao pescoço).
+| Formato | Tamanho | Uso |
+|---|---|---|
+| Feed (padrão) | 1080 × 1350 (4:5) | Posts e carrossel |
+| Stories / Reels | 1080 × 1920 (9:16) | Stories, capa de reels (ref. 08) |
+
+## Layouts
+
+1. **Empilhado (o mais usado):** antes em cima, depois embaixo, cada foto com metade da altura
+   e um corte seco entre elas (refs. 01–04, 08).
+2. **Lado a lado:** duas colunas com metade da largura cada, título no topo sobre o fundo
+   (refs. 05, 07, 09). Funciona bem para foto frontal (ref. 09) e perfil (ref. 07).
+3. **Empilhado deslocado:** antes no alto à esquerda e depois embaixo à direita, avançando sobre
+   a área do antes. A foto do depois fica recortada e o espaço livre à esquerda, sobre um fundo
+   em degradê cinza, recebe o texto (ref. 06).
+4. **Composição editorial:** o depois colorido, grande, à esquerda, e o antes em **preto e
+   branco**, esmaecido, à direita, fundindo-se ao fundo claro. Rótulos indicam as áreas tratadas
+   (ref. 10). Uma variação é o close P&B ao fundo, atrás do antes (ref. 02).
+5. **Sem texto:** apenas as fotos e a assinatura. Para stories ou quando o resultado fala sozinho
+   (refs. 04, 08).
+
+Regras de todos os layouts:
+- **Mesmo ângulo, enquadramento e iluminação** no antes e no depois.
+- Ângulos usados: perfil, ¾, frontal e perfil com o rosto inclinado para cima (mento, mandíbula
+  e nariz).
+- Recorte próximo: o rosto domina o quadro, sem bordas nem molduras.
 
 ## Fundo
 
 - Sempre **neutro**: branco gelo, cinza claro, cinza, cinza escuro ou preto.
-- Pode estar **levemente desfocado** (ambiente de consultório escuro, ref. 03).
-- Variação editorial: um close em **preto e branco** do próprio rosto, ampliado e ao fundo,
-  atrás do antes (ref. 02).
+- Pode estar **levemente desfocado** (consultório escuro, ref. 03) ou em **degradê cinza** suave
+  (ref. 06).
+- A parede lisa cinza ou branca do consultório também serve, desde que neutra (refs. 05, 07–09).
+- O **preto e branco** é a única "cor" extra permitida e serve para o antes ou o fundo editorial
+  (refs. 02, 10).
 - Nada de fundos coloridos, padronagens ou elementos que concorram com o rosto.
 
 ## Tipografia
 
-Combinação de duas famílias:
+Combinação de famílias:
 
-1. **Sans-serif geométrica**, em branco ou cinza chumbo, mesclando pesos:
-   leve/regular + **negrito** na palavra-chave.
-   Ex.: "Um **perfil** que te", "Um **passo** que te", "O que eu faço com **1 ml**?"
-2. **Script/caligráfica de destaque**, grande, em itálico ou cursiva, uma única palavra-chave
-   emocional, frequentemente com textura (efeito bordado/carimbo/giz):
-   *empodere*, *revigore*, *mágica.*, *rejuvenescer?*
+1. **Sans-serif geométrica**, mesclando pesos: leve/regular + **negrito** na palavra-chave.
+   Ex.: "Um **perfil** que te", "Todo **perfil** conta uma", "Permita-se enxergar sob **um novo
+   olhar.**", "**Dr,** eu quero parecer mais".
+2. **Script de destaque**, grande, numa única palavra-chave emocional. Três estilos:
+   - **Script com textura** (bordado/giz/carimbo), em branco: *empodere*, *mágica.*, *adulta.*
+     (refs. 01, 03, 09).
+   - **Serifa itálica condensada / script elegante**, lisa, em branco ou cinza chumbo:
+     *revigore*, *rejuvenescer?*, *história.* (refs. 02, 05, 10).
+   - **Manuscrito de caneta** (letra à mão), usado na frase inteira, em branco sobre tarjas
+     escuras (ref. 07).
 
-- A palavra em script fica **sobre a linha de divisão** entre o antes e o depois (refs. 01 e 03)
-  ou abaixo do título no topo (ref. 05).
-- Variação: as palavras sans podem ter uma **tarja** retangular cinza chumbo atrás (ref. 05).
-- Cor do texto de acordo com o fundo: branco em fundo escuro; cinza chumbo em fundo claro.
+### Tarjas
+
+- Retângulos **cinza chumbo** atrás de cada linha de texto, ajustados ao comprimento da linha,
+  com texto branco (refs. 05, 06, 07, 09).
+- Usar quando o fundo atrás do texto é claro ou tem detalhes, para garantir a leitura.
+- A palavra em script geralmente fica **fora da tarja**, sobreposta.
+
+### Posição do texto
+
+- Sobre a **linha de divisão** entre o antes e o depois (refs. 01, 03, 07).
+- No **topo**, acima das fotos lado a lado (refs. 05, 09).
+- No **espaço vazio do fundo**, ao lado do rosto (refs. 02, 06, 10).
+- Nunca sobre olhos, nariz ou boca: o texto não cobre a área tratada.
+
+### Cor do texto
+
+- Branco em fundo escuro ou com tarja; cinza chumbo em fundo claro (refs. 02, 10).
 
 ### Estrutura de copy
 
-`Um [palavra-chave] que te` + **[verbo em script]**, ou uma pergunta curta + resposta em script.
-Tom: empoderamento, autoestima, rejuvenescimento, naturalidade.
+- `Um [palavra] que te` + **[verbo em script]**: empodere, revigore.
+- Pergunta + resposta: "O que eu faço com **1 ml**?" *mágica.*;
+  "Quantos anos você quer *rejuvenescer?*"; "O quanto o nariz muda um perfil?"
+- Fala da paciente: "**Dr,** eu quero parecer mais *adulta.*"
+- Frase inspiracional: "Permita-se enxergar sob **um novo olhar.**";
+  "Todo **perfil** conta uma *história.*"
+- Tom: empoderamento, autoestima, rejuvenescimento, naturalidade, harmonia do perfil.
 
-## Rótulos ANTES / DEPOIS
+## Rótulos
 
-- Caixa alta, sans fina, **letras bem espaçadas** (tracking largo): `A N T E S`, `D E P O I S`.
-- Tamanho pequeno, discreto, em branco (fundo escuro) ou cinza (fundo claro).
-- Posição: canto inferior esquerdo do antes e canto superior esquerdo do depois, ou alinhados
-  à lateral do rosto no espaço vazio (ref. 04).
-- Opcional quando o título já deixa claro (refs. 01 e 05).
+- **ANTES / DEPOIS:** caixa alta, sans fina, **letras bem espaçadas** (`A N T E S`,
+  `D E P O I S`), pequenos e discretos. Ficam no canto da foto ou alinhados ao lado do rosto
+  (refs. 02–04). São opcionais quando o layout já deixa clara a ordem.
+- **Áreas tratadas:** mesmo estilo espaçado, com os nomes das regiões alinhados à altura de cada
+  uma: `NARIZ`, `LÁBIOS`, `MENTO` (ref. 10).
 
 ## Assinatura
 
-- Logo manuscrito **"moisés persin"** em branco, pequeno, sempre no **quadro do depois**.
-- Posição: perto do queixo/pescoço ou no canto inferior, em área de fundo limpo.
+- Logo manuscrito **"moisés persin"**, pequeno, sempre no **quadro do depois**.
+- **Branco** sobre foto ou fundo escuro; **cinza chumbo** sobre fundo claro (ref. 10).
+- Posição: perto do queixo, pescoço ou canto inferior, em área de fundo limpo.
 
 ## Tratamento de imagem
 
 - Pele natural, com textura visível: **sem filtros nem retoques** que mascarem o resultado.
 - Cores fiéis; o depois pode ter luz ligeiramente mais suave, sem mudar o tom da pele.
+- O P&B só entra como recurso editorial (antes ou fundo), nunca no depois.
 
 ## Cores
 
@@ -72,8 +115,8 @@ Base neutra observada nas referências:
 |---|---|
 | Branco gelo (fundo claro, texto) | `#F2F2F0` |
 | Cinza claro (fundo) | `#C9CBCC` |
-| Cinza médio (fundo) | `#8E9396` |
-| Cinza chumbo (texto e tarjas) | `#2E3236` |
+| Cinza médio (fundo, degradê) | `#8E9396` |
+| Cinza chumbo (texto, tarjas, assinatura em fundo claro) | `#2E3236` |
 | Preto (fundo escuro) | `#121212` |
 
 Os valores acima são aproximados. **Substituir pelos códigos da paleta oficial** assim que ela
@@ -81,10 +124,13 @@ for anexada aqui.
 
 ## Checklist
 
-- [ ] 1080 × 1350, antes em cima e depois embaixo (ou lado a lado)
+- [ ] 1080 × 1350 (feed) ou 1080 × 1920 (stories)
+- [ ] Layout: empilhado, lado a lado, deslocado, editorial ou sem texto
 - [ ] Mesmo ângulo e luz nas duas fotos
-- [ ] Fundo neutro (gelo, cinza, chumbo ou preto), pode estar desfocado
-- [ ] Título sans + palavra-chave em script
-- [ ] Rótulos A N T E S / D E P O I S espaçados, se usados
-- [ ] Assinatura "moisés persin" no depois
+- [ ] Fundo neutro (gelo, cinza, chumbo ou preto), podendo ser desfocado, em degradê ou P&B
+- [ ] Título sans com negrito na palavra-chave + destaque em script
+- [ ] Tarja cinza chumbo se o fundo atrapalhar a leitura
+- [ ] Texto fora das áreas tratadas
+- [ ] Rótulos espaçados (ANTES/DEPOIS ou áreas), se usados
+- [ ] Assinatura "moisés persin" no depois, branca ou chumbo conforme o fundo
 - [ ] Sem filtros na pele
