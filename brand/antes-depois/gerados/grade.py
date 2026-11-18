@@ -14,13 +14,17 @@ def softlight(b,c): return (1-2*c)*b*b+2*c*b
 def gmap(L,stops):
     xs=np.linspace(0,1,len(stops)); cs=np.array([P[s] for s in stops])
     return np.stack([np.interp(L,xs,cs[:,i]) for i in range(3)],-1)
+def ss(x,a,b):
+    t=np.clip((x-a)/(b-a),0,1); return t*t*(3-2*t)
+def tint_keep_shadow(x,L,shadow_mix):
+    t=tint(L,P['C7CDD3']); w=ss(L,0.33,0.55)[...,None]
+    sh=x*(1-shadow_mix)+t*shadow_mix   # sombra: original (ou leve mistura)
+    return t*w+sh*(1-w)
 T={
+ '0-original':       lambda x,L: x,
+ '1a-cor-sombra-original': lambda x,L: tint_keep_shadow(x,L,0.0),
+ '1b-cor-sombra-suave':    lambda x,L: tint_keep_shadow(x,L,0.4),
  '1-cor-C7CDD3':     lambda x,L: tint(L,P['C7CDD3']),
- '2-overlay-C7CDD3': lambda x,L: overlay(L[...,None],P['C7CDD3']),
- '3-softlight-9198A0':lambda x,L: softlight(L[...,None],P['9198A0']),
- '4-mapa-paleta':    lambda x,L: gmap(L,['1F2228','454953','9198A0','C7CDD3','EDF0F0']),
- '5-mapa-escuro':    lambda x,L: gmap(L,['1F2228','454953','9198A0']),
- '6-pb-neutro':      lambda x,L: np.repeat(L[...,None],3,-1),
 }
 H=1960; CW=int(H*0.4)
 crops=[('11.jpg',88,0),('12.jpg',63,40)]
@@ -33,6 +37,7 @@ for f,x0,y0 in crops:
 logo=Image.open('/home/user/claude/brand/antes-depois/gerados/assinatura-provisoria.png'); lw=200
 logo=logo.resize((lw,int(logo.height*lw/logo.width)),Image.LANCZOS)
 thumbs=[]
+import re
 for name,fn in T.items():
     cols=[]
     for I,a in srcs:
@@ -43,9 +48,9 @@ for name,fn in T.items():
     img.paste((255,255,255),(img.width-lw-45,img.height-logo.height-55),logo)
     img.save(OUT+name+'.png',icc_profile=icc)
     thumbs.append((name,img.resize((392,490),Image.LANCZOS)))
-sheet=Image.new('RGB',(3*392+40,2*(490+40)+10),(237,240,240)); d=ImageDraw.Draw(sheet)
+sheet=Image.new('RGB',(4*392+50,490+50),(237,240,240)); d=ImageDraw.Draw(sheet)
 fnt=ImageFont.truetype('/usr/share/fonts/opentype/inter/Inter-SemiBold.otf',22)
 for i,(n,t) in enumerate(thumbs):
-    x=10+(i%3)*(392+10); y=10+(i//3)*(490+45)
+    x=10+i*(392+10); y=10
     sheet.paste(t,(x,y)); d.text((x,y+495),n,font=fnt,fill=(31,34,40))
-sheet.save(OUT+'00-comparativo.png'); print(img.size)
+sheet.save(OUT+'00-comparativo-1.png'); print(img.size)
