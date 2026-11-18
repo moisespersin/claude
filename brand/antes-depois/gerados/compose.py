@@ -22,20 +22,8 @@ def neutralize(im):
 if neutral: before,after=neutralize(before),neutralize(after)
 c=Image.new('RGB',(W,H)); c.paste(before,(0,0)); c.paste(after,(CW,0))
 d=ImageDraw.Draw(c)
-CHUMBO=(46,50,54)
-F='/usr/share/fonts/opentype/inter/'
-reg=ImageFont.truetype(F+'Inter-Light.otf',62); bold=ImageFont.truetype(F+'Inter-SemiBold.otf',62)
-script=ImageFont.truetype('fonts/InstrumentSerif.ttf',190)
-parts=[('Um ',reg),('perfil',bold),(' que te',reg)]
-tw=sum(d.textlength(t,font=f) for t,f in parts)
-x=(W-tw)/2; y=58
-for t,f in parts:
-    d.text((x,y),t,font=f,fill=CHUMBO); x+=d.textlength(t,font=f)
-word='valoriza.'
-ww=d.textlength(word,font=script)
-d.text(((W-ww)/2,96),word,font=script,fill=CHUMBO)
 # assinatura no depois
-logo=Image.open('logo_alpha.png'); lw=190; logo=logo.resize((lw,int(logo.height*lw/logo.width)),Image.LANCZOS)
+logo=Image.open('assinatura-provisoria.png'); lw=190; logo=logo.resize((lw,int(logo.height*lw/logo.width)),Image.LANCZOS)
 c.paste((255,255,255),(W-lw-40,H-logo.height-50),logo)
 out=sys.argv[1]
 c.save(out,quality=100,subsampling=0,icc_profile=icc) if out.endswith('.jpg') else c.save(out,icc_profile=icc)

@@ -36,6 +36,11 @@ Regras de todos os layouts:
 
 ## Fundo
 
+> **REGRA PRINCIPAL:** o fundo final tem que estar **nas cores-base da paleta oficial**.
+> Se a foto foi feita numa parede de outra cor (bege, quente, colorida), o fundo deve ser
+> recolorido ou substituído pela cor-base, sem alterar a pele, o cabelo ou a roupa do paciente.
+> Antes de entregar qualquer antes e depois, confirmar que o fundo está na paleta.
+
 - Sempre **neutro**: branco gelo, cinza claro, cinza, cinza escuro ou preto.
 - Pode estar **levemente desfocado** (consultório escuro, ref. 03) ou em **degradê cinza** suave
   (ref. 06).
@@ -127,7 +132,9 @@ for anexada aqui.
 - [ ] 1080 × 1350 (feed) ou 1080 × 1920 (stories)
 - [ ] Layout: empilhado, lado a lado, deslocado, editorial ou sem texto
 - [ ] Mesmo ângulo e luz nas duas fotos
+- [ ] **Fundo nas cores-base da paleta** (recolorir se a parede original for de outra cor)
 - [ ] Fundo neutro (gelo, cinza, chumbo ou preto), podendo ser desfocado, em degradê ou P&B
+- [ ] Texto só quando pedido; a versão sem texto é válida (ex.: `gerados/antes-depois-4x5`)
 - [ ] Título sans com negrito na palavra-chave + destaque em script
 - [ ] Tarja cinza chumbo se o fundo atrapalhar a leitura
 - [ ] Texto fora das áreas tratadas
