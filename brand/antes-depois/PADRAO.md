@@ -144,3 +144,12 @@ os fundos neutros, a menos que seja pedido.
 - [ ] Rótulos espaçados (ANTES/DEPOIS ou áreas), se usados
 - [ ] Assinatura "moisés persin" no depois, branca ou chumbo conforme o fundo
 - [ ] Sem filtros na pele
+
+## Fluxo de produção (troca de fundo)
+
+1. Recorte local com IA, sem enviar fotos para fora: `rembg`, modelo `birefnet-portrait`
+   (`gerados/rb.py`, uma foto por vez para não estourar a memória).
+2. Composição com `gerados/final.py <HEX>`: aplica a cor-base com luz suave e grão fino, limpa
+   a cor da parede antiga nas bordas do cabelo, alinha o antes e o depois e acrescenta margem
+   para não cortar cabelo, orelha e nariz.
+3. Saída em resolução nativa (sem ampliar), em PNG sem perda e JPG de qualidade máxima.
