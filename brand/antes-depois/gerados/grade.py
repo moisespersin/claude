@@ -26,6 +26,9 @@ T={
  '1b-cor-sombra-suave':    lambda x,L: tint_keep_shadow(x,L,0.4),
  '1-cor-C7CDD3':     lambda x,L: tint(L,P['C7CDD3']),
 }
+import sys
+ASSINAR='--sem-assinatura' not in sys.argv
+ONLY=[a for a in sys.argv[1:] if not a.startswith('--')]
 H=1960; CW=int(H*0.4)
 crops=[('11.jpg',88,0),('12.jpg',63,40)]
 srcs=[]
@@ -39,15 +42,17 @@ logo=logo.resize((lw,int(logo.height*lw/logo.width)),Image.LANCZOS)
 thumbs=[]
 import re
 for name,fn in T.items():
+    if ONLY and name not in ONLY: continue
     cols=[]
     for I,a in srcs:
         L=lum(I); G=fn(I,L)
         cols.append(I*a+G*(1-a))
     out=np.concatenate(cols,1)
     img=Image.fromarray((np.clip(out,0,1)*255+0.5).astype('uint8'))
-    img.paste((255,255,255),(img.width-lw-45,img.height-logo.height-55),logo)
-    img.save(OUT+name+'.png',icc_profile=icc)
+    if ASSINAR: img.paste((255,255,255),(img.width-lw-45,img.height-logo.height-55),logo)
+    img.save(OUT+name+('' if ASSINAR else '-sem-assinatura')+'.png',icc_profile=icc)
     thumbs.append((name,img.resize((392,490),Image.LANCZOS)))
+if ONLY: raise SystemExit
 sheet=Image.new('RGB',(4*392+50,490+50),(237,240,240)); d=ImageDraw.Draw(sheet)
 fnt=ImageFont.truetype('/usr/share/fonts/opentype/inter/Inter-SemiBold.otf',22)
 for i,(n,t) in enumerate(thumbs):
