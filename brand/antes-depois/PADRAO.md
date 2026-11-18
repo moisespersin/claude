@@ -4,7 +4,7 @@ Guia para criar posts de antes e depois no padrão da marca. Referências em `re
 (numeradas de 01 a 10, citadas abaixo como "ref. N").
 
 > Status: em construção. Mais referências virão para consolidar o padrão.
-> Paleta de cores oficial: **pendente de anexar neste repositório** (ver seção Cores).
+> Paleta de cores oficial: `brand/paleta.jpg` (ver seção Cores).
 
 ## Formatos
 
@@ -112,20 +112,23 @@ Combinação de famílias:
 - Cores fiéis; o depois pode ter luz ligeiramente mais suave, sem mudar o tom da pele.
 - O P&B só entra como recurso editorial (antes ou fundo), nunca no depois.
 
-## Cores
+## Cores (paleta oficial)
 
-Base neutra observada nas referências:
+Arquivo: `brand/paleta.jpg`.
 
-| Uso | Cor aproximada |
-|---|---|
-| Branco gelo (fundo claro, texto) | `#F2F2F0` |
-| Cinza claro (fundo) | `#C9CBCC` |
-| Cinza médio (fundo, degradê) | `#8E9396` |
-| Cinza chumbo (texto, tarjas, assinatura em fundo claro) | `#2E3236` |
-| Preto (fundo escuro) | `#121212` |
+| Cor | Hex | Uso |
+|---|---|---|
+| Branco gelo | `#EDF0F0` | Fundo claro, texto sobre fundo escuro |
+| Cinza claro | `#C7CDD3` | **Fundo base** (parede clara) |
+| Cinza médio | `#9198A0` | Fundo médio, degradês |
+| Chumbo | `#454953` | Fundo escuro, tarjas, texto em fundo claro |
+| Grafite | `#1F2228` | Fundo preto, texto principal |
+| Areia | `#D9D0C1` | Cor de apoio quente (detalhes, fundo quente opcional) |
+| Nude | `#BFA893` | Cor de apoio quente (detalhes) |
 
-Os valores acima são aproximados. **Substituir pelos códigos da paleta oficial** assim que ela
-for anexada aqui.
+**Cores-base de fundo:** `#EDF0F0`, `#C7CDD3`, `#9198A0`, `#454953`, `#1F2228`.
+Degradês só entre cores vizinhas desta lista. Areia e nude são cores de apoio e não substituem
+os fundos neutros, a menos que seja pedido.
 
 ## Checklist
 
