@@ -145,11 +145,16 @@ os fundos neutros, a menos que seja pedido.
 - [ ] Assinatura "moisés persin" no depois, branca ou chumbo conforme o fundo
 - [ ] Sem filtros na pele
 
-## Fluxo de produção (troca de fundo)
+## Fluxo de produção (tom do fundo)
 
-1. Recorte local com IA, sem enviar fotos para fora: `rembg`, modelo `birefnet-portrait`
-   (`gerados/rb.py`, uma foto por vez para não estourar a memória).
-2. Composição com `gerados/final.py <HEX>`: aplica a cor-base com luz suave e grão fino, limpa
-   a cor da parede antiga nas bordas do cabelo, alinha o antes e o depois e acrescenta margem
-   para não cortar cabelo, orelha e nariz.
-3. Saída em resolução nativa (sem ampliar), em PNG sem perda e JPG de qualidade máxima.
+**Não substituir o fundo.** A parede, as molduras, os reflexos e a textura originais ficam.
+Muda apenas o **tom** do fundo, para as cores da paleta.
+
+1. Máscara do paciente com IA local, sem enviar fotos para fora: `rembg`, modelo
+   `birefnet-portrait` (`gerados/rb.py`, uma foto por vez).
+2. Graduação de cor só no fundo, com `gerados/grade.py`. A pele, o cabelo e a roupa não mudam.
+   Métodos testados (`gerados/testes-tom/`):
+   cor (paleta + luminosidade original), overlay, luz suave, mapa de gradiente da paleta,
+   mapa escuro e P&B.
+3. Recorte apenas dentro da foto original, sem inventar fundo. Saída em resolução nativa e PNG
+   sem perda.
