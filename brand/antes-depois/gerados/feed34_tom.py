@@ -13,15 +13,16 @@ def tom(f):  # teste 1: só o fundo ganha o tom; paciente fica com a cor origina
     a=np.asarray(Image.open(SP+f'm_birefnet-portrait_{f[:2]}.png')).astype(float)[...,None]/255
     G=np.clip(lum(I)[...,None]*C/lum(C),0,1)
     return Image.fromarray((np.clip(I*a+G*(1-a),0,1)*255+0.5).astype('uint8'))
-W,PH=1080,675
-A_L,A_R=(430,1117),(625,1127); D_L,D_R=(380,1235),(610,1243)
-mid=lambda p,q: ((p[0]+q[0])/2,(p[1]+q[1])/2); ang=lambda p,q: math.atan2(q[1]-p[1],q[0]-p[0])
-mA,mD=mid(A_L,A_R),mid(D_L,D_R); k=1.15; th=ang(A_L,A_R)-ang(D_L,D_R)
-BX,BY,BW=0,990,1450; BH=round(BW*PH/W)
-before,after=tom('18.jpg'),tom('19.jpg')
-a_,b_=math.cos(th)/k,-math.sin(th)/k; d_,e_=-b_,a_
-cx=mA[0]+a_*(BX-mD[0])+b_*(BY-mD[1]); cy=mA[1]+d_*(BX-mD[0])+e_*(BY-mD[1])
-top=before.transform((BW,BH),Image.AFFINE,(a_,b_,cx,d_,e_,cy),resample=Image.BICUBIC)
-bot=after.crop((BX,BY,BX+BW,BY+BH))
-img=Image.new('RGB',(W,PH*2)); img.paste(top.resize((W,PH),Image.LANCZOS),(0,0)); img.paste(bot.resize((W,PH),Image.LANCZOS),(0,PH))
-img.save(OUT+'feed-4x5-perfil-34-C7CDD3.png',icc_profile=P3); print(img.size)
+if __name__=='__main__':
+    W,PH=1080,675
+    A_L,A_R=(430,1117),(625,1127); D_L,D_R=(380,1235),(610,1243)
+    mid=lambda p,q: ((p[0]+q[0])/2,(p[1]+q[1])/2); ang=lambda p,q: math.atan2(q[1]-p[1],q[0]-p[0])
+    mA,mD=mid(A_L,A_R),mid(D_L,D_R); k=1.15; th=ang(A_L,A_R)-ang(D_L,D_R)
+    BX,BY,BW=0,990,1450; BH=round(BW*PH/W)
+    before,after=tom('18.jpg'),tom('19.jpg')
+    a_,b_=math.cos(th)/k,-math.sin(th)/k; d_,e_=-b_,a_
+    cx=mA[0]+a_*(BX-mD[0])+b_*(BY-mD[1]); cy=mA[1]+d_*(BX-mD[0])+e_*(BY-mD[1])
+    top=before.transform((BW,BH),Image.AFFINE,(a_,b_,cx,d_,e_,cy),resample=Image.BICUBIC)
+    bot=after.crop((BX,BY,BX+BW,BY+BH))
+    img=Image.new('RGB',(W,PH*2)); img.paste(top.resize((W,PH),Image.LANCZOS),(0,0)); img.paste(bot.resize((W,PH),Image.LANCZOS),(0,PH))
+    img.save(OUT+'feed-4x5-perfil-34-C7CDD3.png',icc_profile=P3); print(img.size)
