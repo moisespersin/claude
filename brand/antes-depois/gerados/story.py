@@ -1,5 +1,6 @@
 import numpy as np, sys
 from PIL import Image
+import sys; sys.path.insert(0,'/tmp/claude-0/-home-user-claude/2fe0263b-8b87-5d83-9885-629a1898bc55/scratchpad'); from cor import abrir, P3
 SP='/tmp/claude-0/-home-user-claude/2fe0263b-8b87-5d83-9885-629a1898bc55/scratchpad/'
 IMG='/tmp/claude-0/-home-user-claude/2fe0263b-8b87-5d83-9885-629a1898bc55/images/'
 OUT='/home/user/claude/brand/antes-depois/gerados/final/'
@@ -12,7 +13,7 @@ boxes=[('18.jpg',97,632,1283),('19.jpg',0,682,1450)]
 rows=[]; icc=None
 for f,x0,y0,bw in boxes:
     bh=round(bw*PH/W)
-    im=Image.open(IMG+f); icc=icc or im.info.get('icc_profile')
+    im=abrir(f); icc=P3
     I=np.asarray(im.convert('RGB')).astype(float)/255
     a=np.asarray(Image.open(SP+f'm_birefnet-portrait_{f[:2]}.png')).astype(float)[...,None]/255
     G=np.clip(lum(I)[...,None]*C/lum(C),0,1)

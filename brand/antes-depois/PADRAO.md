@@ -158,3 +158,11 @@ Muda apenas o **tom** do fundo, para as cores da paleta.
    mapa escuro e P&B.
 3. Recorte apenas dentro da foto original, sem inventar fundo. Saída em resolução nativa e PNG
    sem perda.
+
+## Cor original das fotos
+
+**Não alterar a coloração original das fotos.** Fotos de iPhone vêm em Display P3, e fotos
+reenviadas (WhatsApp etc.) costumam vir sem perfil (sRGB). Antes de juntar o antes e o depois,
+converter tudo para o mesmo perfil (Display P3, sem perda) com `gerados/cor.py` e salvar com esse
+perfil embutido. Nunca misturar fotos de perfis diferentes sem converter, porque isso satura as
+cores de uma delas.

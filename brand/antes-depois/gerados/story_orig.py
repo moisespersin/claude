@@ -1,5 +1,6 @@
 import numpy as np, math
 from PIL import Image
+import sys; sys.path.insert(0,'/tmp/claude-0/-home-user-claude/2fe0263b-8b87-5d83-9885-629a1898bc55/scratchpad'); from cor import abrir, P3
 IMG='/tmp/claude-0/-home-user-claude/2fe0263b-8b87-5d83-9885-629a1898bc55/images/'
 OUT='/home/user/claude/brand/antes-depois/gerados/final/'
 W,PH=1080,960                  # story 9:16, antes em cima e depois embaixo
@@ -13,15 +14,15 @@ k=1.15                         # rosto do depois ~15% maior (olhos e sobrancelha
 th=ang(A_L,A_R)-ang(D_L,D_R)   # diferença de inclinação da linha dos olhos
 # caixa do depois na foto original
 BX,BY,BW=0,682,1450; BH=round(BW*PH/W)
-before=Image.open(IMG+'18.jpg'); after=Image.open(IMG+'19.jpg')
-icc=before.info.get('icc_profile')
+before=abrir('18.jpg'); after=abrir('19.jpg')
+icc=P3
 # antes: escala, gira e alinha pelas pupilas para casar com a caixa do depois
 c,s=math.cos(th)/k,math.sin(th)/k
 # saída (u,v) -> ponto no depois p=(u+BX,v+BY) -> antes = mA + R(th)(p-mD)/k
 a_,b_=c,-s; d_,e_=s,c
 cx=mA[0]+a_*(BX-mD[0])+b_*(BY-mD[1]); cy=mA[1]+d_*(BX-mD[0])+e_*(BY-mD[1])
-top=before.convert('RGB').transform((BW,BH),Image.AFFINE,(a_,b_,cx,d_,e_,cy),resample=Image.BICUBIC)
-bot=after.convert('RGB').crop((BX,BY,BX+BW,BY+BH))
+top=before.transform((BW,BH),Image.AFFINE,(a_,b_,cx,d_,e_,cy),resample=Image.BICUBIC)
+bot=after.crop((BX,BY,BX+BW,BY+BH))
 img=Image.new('RGB',(W,PH*2))
 img.paste(top.resize((W,PH),Image.LANCZOS),(0,0)); img.paste(bot.resize((W,PH),Image.LANCZOS),(0,PH))
 img.save(OUT+'story-9x16-fundo-original.png',icc_profile=icc)
