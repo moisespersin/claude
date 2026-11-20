@@ -21,14 +21,20 @@ def expandir(im):
     return Image.fromarray(np.clip(out+0.5,0,255).astype('uint8'))
 before,after=expandir(tom('18.jpg')),expandir(tom('19.jpg'))
 CW,H=540,1350                                  # feed 4:5, antes à esquerda e depois à direita
-A_L,A_R=(430,1117),(625,1127); D_L,D_R=(380,1235),(610,1243)
-mid=lambda p,q: ((p[0]+q[0])/2,(p[1]+q[1])/2); ang=lambda p,q: math.atan2(q[1]-p[1],q[0]-p[0])
-mA,mD=mid(A_L,A_R),mid(D_L,D_R); k=1.15; th=ang(A_L,A_R)-ang(D_L,D_R)
-BW=int(sys.argv[1]) if len(sys.argv)>1 else 1250; BH=round(BW*H/CW)
-BX=int(sys.argv[2]) if len(sys.argv)>2 else 85; BY=int(sys.argv[3]) if len(sys.argv)>3 else -78
-mA=(mA[0]+P,mA[1]+P); mD=(mD[0]+P,mD[1]+P); BX+=P; BY+=P
-a_,b_=math.cos(th)/k,-math.sin(th)/k; d_,e_=-b_,a_
-cx=mA[0]+a_*(BX-mD[0])+b_*(BY-mD[1]); cy=mA[1]+d_*(BX-mD[0])+e_*(BY-mD[1])
+# pontos que não mudam com o procedimento: pupilas, ponta do nariz, orelha e queixo
+A=np.array([(427,1115),(643,1130),(385,1295),(1090,1250),(535,1670)],float)  # antes
+D=np.array([(377,1232),(605,1238),(310,1415),(1112,1430),(400,1850)],float)  # depois
+# transformação de similaridade (escala, rotação, deslocamento) por mínimos quadrados: depois -> antes
+Dc,Ac=D-D.mean(0),A-A.mean(0)
+zD=Dc[:,0]+1j*Dc[:,1]; zA=Ac[:,0]+1j*Ac[:,1]
+m=(np.conj(zD)@zA)/(np.conj(zD)@zD)                 # escala*e^(i*ângulo)
+res=np.abs(zA-m*zD); print('escala',round(abs(m),3),'graus',round(math.degrees(math.atan2(m.imag,m.real)),2),'erro px',res.round(1))
+BW=int(sys.argv[1]) if len(sys.argv)>1 else 1120; BH=round(BW*H/CW)
+BX=int(sys.argv[2]) if len(sys.argv)>2 else 240; BY=int(sys.argv[3]) if len(sys.argv)>3 else 330
+a_,b_,d_,e_=m.real,-m.imag,m.imag,m.real
+# antes(x,y) = A.mean + m*((x,y)-D.mean), com tudo deslocado pela margem P
+cx=A.mean(0)[0]+P+a_*(BX-D.mean(0)[0])+b_*(BY-D.mean(0)[1]); cy=A.mean(0)[1]+P+d_*(BX-D.mean(0)[0])+e_*(BY-D.mean(0)[1])
+BX+=P; BY+=P
 L=before.transform((BW,BH),Image.AFFINE,(a_,b_,cx,d_,e_,cy),resample=Image.BICUBIC)
 R=after.crop((BX,BY,BX+BW,BY+BH))
 img=Image.new('RGB',(CW*2,H)); img.paste(L.resize((CW,H),Image.LANCZOS),(0,0)); img.paste(R.resize((CW,H),Image.LANCZOS),(CW,0))
