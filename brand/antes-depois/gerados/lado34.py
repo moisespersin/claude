@@ -5,19 +5,16 @@ from feed34_tom import tom, P3      # fundo no tom #C7CDD3, paciente na cor orig
 SP='/tmp/claude-0/-home-user-claude/2fe0263b-8b87-5d83-9885-629a1898bc55/scratchpad/'
 P=1000
 def expandir(im):
-    """Estende a foto em todas as bordas continuando parede/camiseta, sem mexer no original."""
-    a=np.asarray(im).astype(float)
-    e=np.pad(a,((P,P),(P,P),(0,0)),mode='edge')
-    b=np.stack([np.asarray(Image.fromarray(e[...,c].astype('uint8')).filter(ImageFilter.GaussianBlur(60))).astype(float) for c in range(3)],-1)
-    H,W=a.shape[:2]; yy,xx=np.mgrid[0:H+2*P,0:W+2*P]
-    d=np.maximum.reduce([P-yy,yy-(H+P-1),P-xx,xx-(W+P-1),np.zeros_like(yy)]).astype(float)
-    w=np.clip(d/40,0,1)[...,None]               # funde 40 px a partir da borda real
-    out=e*(1-w)+b*w+np.random.default_rng(3).normal(0,1.2,e.shape)*w
-    # embaixo: espelha a camiseta (mantém a textura do tecido), fundindo 60 px na emenda
-    r=np.pad(a,((0,P),(P,P),(0,0)),mode='symmetric')[H:]
-    t=np.clip((np.arange(P)/60.0),0,1)[:,None,None]
-    out[H+P:]=r*1.0
-    out[P:P+H,P:P+W]=a
+    """Estende a foto continuando parede/camiseta sem listras; o rosto não é tocado."""
+    a=np.asarray(im).astype(float); H,W=a.shape[:2]
+    S=np.stack([np.asarray(Image.fromarray(a[...,c].astype('uint8')).filter(ImageFilter.GaussianBlur(30))).astype(float) for c in range(3)],-1)
+    out=np.pad(S,((P,P),(P,P),(0,0)),mode='edge')
+    out[H+P:]=np.pad(a,((0,P),(P,P),(0,0)),mode='symmetric')[H:]   # embaixo: espelha a camiseta
+    # dentro da foto, as últimas 40 px de parede fundem suavemente com a extensão
+    yy,xx=np.mgrid[0:H,0:W]; d=np.minimum.reduce([yy,xx,W-1-xx]).astype(float)
+    w=np.clip(d/40,0,1)[...,None]
+    out[P:P+H,P:P+W]=a*w+S*(1-w)
+    out+=np.random.default_rng(3).normal(0,1.0,out.shape)*(1-np.pad(np.ones((H,W,1)),((P,P),(P,P),(0,0))))
     return Image.fromarray(np.clip(out+0.5,0,255).astype('uint8'))
 before,after=expandir(tom('18.jpg')),expandir(tom('19.jpg'))
 CW,H=540,1350                                  # feed 4:5, antes à esquerda e depois à direita
