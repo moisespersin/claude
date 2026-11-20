@@ -166,3 +166,15 @@ reenviadas (WhatsApp etc.) costumam vir sem perfil (sRGB). Antes de juntar o ant
 converter tudo para o mesmo perfil (Display P3, sem perda) com `gerados/cor.py` e salvar com esse
 perfil embutido. Nunca misturar fotos de perfis diferentes sem converter, porque isso satura as
 cores de uma delas.
+
+## Padrão de entrega (aplicar sempre, sem precisar pedir)
+
+1. **Fundo no tom #C7CDD3 (teste 1):** a parede original fica (molduras, reflexos, textura e
+   sombras), só o tom muda para #C7CDD3. O paciente (pele, cabelo, roupa) não muda nada.
+2. **Cor original do paciente:** converter as fotos para o mesmo perfil (Display P3) antes de montar.
+3. **Alinhamento:** mesma escala, inclinação e altura dos olhos no antes e no depois.
+4. **Sem assinatura e sem texto**, salvo pedido.
+5. **Sem ampliar** as fotos; só recorte e redução.
+6. Fotos de pacientes **não vão para o GitHub**; as montagens são entregues direto.
+
+Exemplo de script: `gerados/feed34_tom.py`.
