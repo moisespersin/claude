@@ -8,10 +8,12 @@ px=Image.new('RGB',(1,1),(0xC7,0xCD,0xD3))
 px=ImageCms.profileToProfile(px,ImageCms.createProfile('sRGB'),ImageCms.ImageCmsProfile(io.BytesIO(P3)),outputMode='RGB')
 C=np.array(px.getpixel((0,0)),float)/255
 lum=lambda x: x[...,0]*0.2126+x[...,1]*0.7152+x[...,2]*0.0722
+import os
+ESCURO=float(os.environ.get('ESCURO','1'))   # <1 escurece só o fundo
 def tom(f):  # teste 1: só o fundo ganha o tom; paciente fica com a cor original
     I=np.asarray(abrir(f)).astype(float)/255
     a=np.asarray(Image.open(SP+f'm_birefnet-portrait_{f[:2]}.png')).astype(float)[...,None]/255
-    G=np.clip(lum(I)[...,None]*C/lum(C),0,1)
+    G=np.clip(lum(I)[...,None]*C/lum(C)*ESCURO,0,1)
     return Image.fromarray((np.clip(I*a+G*(1-a),0,1)*255+0.5).astype('uint8'))
 if __name__=='__main__':
     W,PH=1080,675
