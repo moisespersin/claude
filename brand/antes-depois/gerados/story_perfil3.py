@@ -1,4 +1,4 @@
-import numpy as np, math, sys
+import numpy as np, math, sys, os
 from PIL import Image, ImageFilter
 sys.path.insert(0,'/tmp/claude-0/-home-user-claude/2fe0263b-8b87-5d83-9885-629a1898bc55/scratchpad')
 from feed34_tom import tom, P3      # fundo no tom #C7CDD3, paciente na cor original
@@ -27,7 +27,8 @@ m=(np.conj(zD)@zA)/(np.conj(zD)@zD)
 print('escala',round(abs(m),3),'graus',round(math.degrees(math.atan2(m.imag,m.real)),2),'erro',np.abs(zA-m*zD).round(1))
 BW=int(sys.argv[1]); BH=round(BW*PH/W); BX=int(sys.argv[2]); BY=int(sys.argv[3])
 a_,b_,d_,e_=m.real,-m.imag,m.imag,m.real
-cx=A.mean(0)[0]+P+a_*(BX-D.mean(0)[0])+b_*(BY-D.mean(0)[1]); cy=A.mean(0)[1]+P+d_*(BX-D.mean(0)[0])+e_*(BY-D.mean(0)[1])
+BYt=BY-int(os.environ.get("TOPDY","0"))   # desloca só a foto de cima
+cx=A.mean(0)[0]+P+a_*(BX-D.mean(0)[0])+b_*(BYt-D.mean(0)[1]); cy=A.mean(0)[1]+P+d_*(BX-D.mean(0)[0])+e_*(BYt-D.mean(0)[1])
 BX+=P; BY+=P
 T=before.transform((BW,BH),Image.AFFINE,(a_,b_,cx,d_,e_,cy),resample=Image.BICUBIC)
 B=after.crop((BX,BY,BX+BW,BY+BH))
