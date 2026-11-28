@@ -16,11 +16,11 @@ def expandir(im):
     out[P:P+H,P:P+W]=a*w+S*(1-w)
     out+=np.random.default_rng(3).normal(0,1.0,out.shape)*(1-np.pad(np.ones((H,W,1)),((P,P),(P,P),(0,0))))
     return Image.fromarray(np.clip(out+0.5,0,255).astype('uint8'))
-before,after=expandir(tom('39.jpg')),expandir(tom('40.jpg'))
+before,after=expandir(tom('39.jpg')),expandir(tom('41.jpg'))
 W,PH=1080,675                                   # feed 4:5, antes em cima e depois embaixo
 # ponta do nariz, olho, sobrancelha, lábios, queixo
 A=np.array([(907,1008),(1159,857),(1043,746),(953,1149),(942,1300)],float)   # antes
-D=np.array([(872,973),(1149,781),(1043,665),(958,1174),(948,1320)],float)  # depois
+D=np.array([(771,953),(998,806),(912,711),(837,1109),(852,1275)],float)  # depois
 Dc,Ac=D-D.mean(0),A-A.mean(0); zD=Dc[:,0]+1j*Dc[:,1]; zA=Ac[:,0]+1j*Ac[:,1]
 m=(np.conj(zD)@zA)/(np.conj(zD)@zD)
 print('escala',round(abs(m),3),'graus',round(math.degrees(math.atan2(m.imag,m.real)),2),'erro',np.abs(zA-m*zD).round(1))
